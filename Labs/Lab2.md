@@ -29,10 +29,12 @@ First thing first, please:
 
 5. Copy and paste the following into Dev Tools Console
 
-```
-# see what indices are on the cluster
-GET _cat/indices
 
+#### see what indices are on the cluster
+
+```
+GET _cat/indices
+```
 # Querying with match, match_phrase, range and bool.
 
 1. Write and execute a query that matches all the documents in the products index. The hits response should contain over 10000 hits, but notice you only get back 10 hits because the default value of "size" for a query is 10:

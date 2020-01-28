@@ -16,7 +16,7 @@ When the vm starts, you are automatically placed in your home directory.  You sh
 ./setup.sh
 ```
 
-When prompted about storage usage, please input Y.
+When prompted about storage usage, please input Y and hit enter.
 
 ### Setup Elasticsearch
 
@@ -198,23 +198,25 @@ PUT _ingest/pipeline/products-dissect
 ```
 
 3. Excecute the command
-4. Use the `filebeat_products.yml` configuration file to load the product.csv
+4. Use the `filebeat_products.yml` configuration file located in `/home/ubuntu/workshop/data/products` to load the product.csv
 
-`/home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/workshop/data/products/filebeat_products.yml`
+```/home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/workshop/data/products/filebeat_products.yml```
 
 * Note, you may need to change the permission of the yml file.
-`chmod go-w /home/ubuntu/workshop/data/products/filebeat_products.yml`
+```chmod go-w /home/ubuntu/workshop/data/products/filebeat_products.yml```
 
 #### Loading multi line file
 
 You can try loading a multi-line Java trace log into Elasticsearch using `filebeat_multiline.yml`
 
-`/home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/workshop/data/logs/filebeat_multiline.yml`
+```/home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/workshop/data/logs/filebeat_multiline.yml```
 
 * Note, you may need to change the permission of the yml file.
-`chmod go-w /home/ubuntu/workshop/data/logs/filebeat_multiline.yml`
+```chmod go-w /home/ubuntu/workshop/data/logs/filebeat_multiline.yml```
 
 #### A little fun with logstash 
 
-`cat /home/ubuntu/workshop/data/stock_market/stocks.txt|/home/ubuntu/elastic/logstash-7.5.2/bin/logstash -f /home/ubuntu/workshop/data/stock_market/stocks.conf`
+Use logstash to load the `stocks.txt` file located in `/home/ubuntu/workshop/data/stock_market/`.
+
+```cat /home/ubuntu/workshop/data/stock_market/stocks.txt|/home/ubuntu/elastic/logstash-7.5.2/bin/logstash -f /home/ubuntu/workshop/data/stock_market/stocks.conf```
   

@@ -20,7 +20,7 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /home/ubuntu/data/data/logs/java_stack_trace.log
+      - /home/ubuntu/workshop/data/logs/java_stack_trace.log 
     fields:
       type: "java_stack_trace"
     multiline.pattern: '^[[:space:]]'

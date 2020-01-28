@@ -20,7 +20,7 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /home/ubuntu/data/products/products.csv
+      - /home/ubuntu/workshop/data/products/products.csv
 
 setup.template.settings:
     index.number_of_shards: 1

@@ -37,7 +37,16 @@ GET _cat/indices
 ```
 # Querying with match, match_phrase, range and bool.
 
-1. Write and execute a query that matches all the documents in the products index. The hits response should contain over 10000 hits, but notice you only get back 10 hits because the default value of "size" for a query is 10:
+1. Write and execute a query that matches all the documents in the products index. The hits response should contain over 10000 hits, but notice you only get back 10 hits because the default value of "size" for a query is 10.
+
+```
+GET products/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
 
 2. Add the "size" parameter to your previous search and set it to 100. You should now see 100 products in the results. 
 
@@ -156,6 +165,7 @@ GET products/_search
 
 9. Run a match_phrase query for "chocolate cookies" on the productName field with a "size" of 200.
 
+```
 GET products/_search
 {
   "size": 200, 
@@ -165,13 +175,26 @@ GET products/_search
     }
   }
 }
+```
 
 In the previous query, notice 5 products had the top score of 9.120971. Why do you think those 5 products scored higher than the next 3 products (which all have the same score of 8.512876). 
 
 Add a slop property of 1 to the previous search and run it again. You should get more hits. 
 
-Scroll down toward the end of the results of your previous search. Notice how the slop property added hits like "chocolate chip cookies" and "chocolate graham cookies".
-Change the slop parameter to 2 and run the previous search again. Notice the numbers of hits goes up even more. Scroll down and look at some of the last hits like "Glutino Gluten Free Vanilla Milk Chocolate Coated Wafer Cookies" and "Ginnybakes Fresh Baked Organic Gluten-free Cookies Chocolate Chip Love". How does a product with the terms reversed ("cookies chocolate") become a hit? 
+```
+GET products/_search
+{
+  "size": 200, 
+  "query": {
+    "match_phrase": {
+      "productName": {
+        "query": "chocolate cookies",
+        "slop" : 1
+      }
+    }
+  }
+}
+```
 
 10. Modify the query in the previous step so that it contains a filter that only shows products with a price of less than or equal to 4.00.
 

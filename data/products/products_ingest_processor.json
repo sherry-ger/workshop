@@ -1,0 +1,42 @@
+PUT _ingest/pipeline/products-dissect
+{
+  "processors": [
+    {
+      "dissect": {
+        "field": "message",
+        "pattern": "%{grp_id},%{upc12},%{brandName},%{productName},%{customerRating},%{price},%{quantitySold}"
+      }
+    },
+    {
+      "remove": {
+        "field": [
+          "agent",
+          "log",
+          "message",
+          "@timestamp",
+          "ecs",
+          "host",
+          "input"
+        ]
+      }
+    },
+    {
+      "convert" : {
+        "field" : "customerRating",
+        "type": "integer"
+      }
+    },
+    {
+      "convert" : {
+        "field" : "price",
+        "type": "float"
+      }
+    }, 
+    {
+      "convert" : {
+        "field" : "quantitySold",
+        "type": "integer"
+      }
+    }
+  ]
+}

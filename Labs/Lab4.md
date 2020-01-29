@@ -104,8 +104,8 @@ You should see something like the following:
 5. Now go to `http://MY-PUBLIC-IP:3000` you should be able to see our app.  Go ahead, add a new car. Now go to Kibana > APM. Select the last 15 minutes and we should see our services and our front end. We can see traces from the front end to the backend services. 
 
 6. One last thing, we will need to ingest the log into Elasticsearch so we can see log events with trace ID.
-  a. Start a new terminal.
-  b. Add the following ingest pipeline using Kibana > Dev Tools
+- Start a new terminal.
+- Add the following ingest pipeline using Kibana > Dev Tools
   
   ```
   PUT _ingest/pipeline/geoip-info
@@ -150,11 +150,13 @@ You should see something like the following:
     ]
   }
   ```
-  b. Run the following commands to start ingest the backend service logs using filebeat.
+
+- Run the following commands to start ingest the backend service logs using filebeat.
   
   ```
   sudo chmod go-w /home/ubuntu/apm/logs/filebeat_apm_logs.yml
-  /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml```
+  /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+  ```
 
 7. Now go to Kibana > APM > car-value-estimator and click on MarketEstimateController#estimateValue
 8. Click on Actions and select show trace log

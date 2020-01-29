@@ -89,17 +89,12 @@ You should see something like the following:
 ```{"estimate":57862,"brand":"Tesla","model":"3","year":2019}```
 
 4. Now we are ready to launch the front end application.  
-  a. Start a new terminal.
-  
-  b. `cd /home/ubuntu/apm/carfront/src`
-  
-  c. Edit constants.js file by replacing localhost with your public IP or DNS.
-  
-  d. Edit rum.js file by replacing all localhost with your public IP or DNS.
-  
-  e. Now we are ready to start
-
-```
+- Start a new terminal.
+- `cd /home/ubuntu/apm/carfront/src`
+- Edit constants.js file by replacing localhost with your public IP or DNS.
+- Edit rum.js file by replacing all localhost with your public IP or DNS.
+- Now we are ready to start
+- ```
 cd ..
 ./install-pkgs.sh
 npm start

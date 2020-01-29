@@ -94,16 +94,19 @@ You should see something like the following:
 - Edit constants.js file by replacing localhost with your public IP or DNS.
 - Edit rum.js file by replacing all localhost with your public IP or DNS.
 - Now we are ready to start
-- ```
-cd ..
-./install-pkgs.sh
-npm start
-```
+
+  ```
+  cd ..
+  ./install-pkgs.sh
+  npm start
+  ```
+
 5. Now go to `http://MY-PUBLIC-IP:3000` you should be able to see our app.  Go ahead, add a new car. Now go to Kibana > APM. Select the last 15 minutes and we should see our services and our front end. We can see traces from the front end to the backend services. 
 
 6. One last thing, we will need to ingest the log into Elasticsearch so we can see log events with trace ID.
   a. Start a new terminal.
   b. Add the following ingest pipeline using Kibana > Dev Tools
+  
   ```
   PUT _ingest/pipeline/geoip-info
   {

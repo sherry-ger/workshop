@@ -15,7 +15,9 @@ sudo apt-get purge --auto-remove nodejs
 
 mkdir /home/ubuntu/elastic
 mkdir /home/ubuntu/workshop/data/logs
+mkdir /home/ubuntu/apm
 mkdir /home/ubuntu/apm/logs
+
 cd /home/ubuntu/elastic
 
 ##  Install Elasticsearch, Kibana, and Filebeat ###############################
@@ -96,7 +98,7 @@ git clone https://github.com/bvader/carfront.git
 ## Copy Config
 cp -f /home/ubuntu/workshop/config/apm-server.yml /home/ubuntu/elastic/apm-server-7.5.2-linux-x86_64/apm-server.yml
 cp -f /home/ubuntu/workshop/config/nginx.yml /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/modules.d/nginx.yml
-cp -f /home/ubuntu/workshop/config/filebeat_apm_logs.yml /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+cp /home/ubuntu/workshop/config/filebeat_apm_logs.yml /home/ubuntu/apm/logs/filebeat_apm_logs.yml
 
 __EOF__
 

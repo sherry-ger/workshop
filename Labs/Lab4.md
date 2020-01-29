@@ -8,37 +8,7 @@
 * Deploy services + the front end app
 * Explore APM, traces, Metrics, and Logs
 
-### Setup Environment
-
-When the vm starts, you are automatically placed in your home directory.  You should have a file called `setup.sh`. Please run the file:
-
-```
-./setup.sh
-```
-
-When prompted about storage usage, please input Y and hit enter.
-
-### Setup Elasticsearch
-
-In this exercise, we will set up Elasticsearch.  The Elasticsearch configuration file is located in `/home/ubuntu/elastic/elasticsearch-7.5.2`.  As you can see we are using the latest Elasticsearch, version 7.5.2
-
-The configuration file is located in the `config` directory.  It is called conveniently, `elasticsearch.yml`.  Please follow these instructions to start your elasticsearch instance.
-
-1. Click on the My lab button on the left if you have not done so.
-
-<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="500" height="300">
-
-2. When the terminal comes up, you should be at `/home/ubuntu`
-3. `cd elastic/elasticsearch-7.5.2/`
-4. To start Elasticsearch, please run `bin/elasticsearch`
-
-### Setup Kibana
-
-We will start Kibana here. The Kibana configuration file is located at `elastic/kibana-7.5.2-linux-x86_64/config`.  You guessed it.  The configuration file is called `kibana.yml`.  Please follow these steps to run Kibana
-
-1. Start a new terminal
-2. Go to the Kibana directory `cd elastic/kibana-7.5.2-linux-x86_64/`
-3. Start Kibana `bin/kibana`
+For this lab, we assume you have set up Elasticsearch and Kibana already. If not, please refer to [Lab 3](https://github.com/sherry-ger/workshop/blob/master/Labs/Lab3.md).
 
 ### Setup Metricbeat
 
@@ -50,7 +20,7 @@ We will start Metricbeat.  By default, the system module is enabled. Namely, the
 
 ### APMServer
 
-Let's start the APM server.  The APM server is actually just a shipper. It enrich and transform the events that are sent from APM agent and ingest them into Elasticsearch.
+Let's start the APM server.  The APM server is actually just a shipper. It enriches and transforms events that are sent from APM agents and forwards them to Elasticsearch.
 
 1. Start a new terminal
 2. Go to the metricbeat directory, `cd elastic/apm-server-7.5.2-linux-x86_64/`
@@ -60,7 +30,7 @@ Let's start the APM server.  The APM server is actually just a shipper. It enric
 
 Before we start, we will need to install Java and nodejs. Ubuntu comes with legacy nodejs; it won't work with our React application.  Please run the following command to install JDK and nodejs.  Please enter Y when prompted.
 
-1. Start a new terminal
+1. Start a new terminal and run through these commands.
 
 ```
 sudo apt-get update
@@ -80,9 +50,9 @@ npm -v
 
 You should be running java 1.8.0_242, nodejs v10.18.1, npm 6.13.4.
 
-3. Bring up two backend services written in Java, cardatabase and car-value-estimator. Our front is a React application call carfront.
+3. Bring up two backend services written in Java, cardatabase and car-value-estimator. Our front end app is a React application called carfront.
 
-*car database service*
+**car database service**
 
 ```
 cd /home/ubuntu/apm/cardatabase
@@ -101,7 +71,7 @@ You should see something like the following:
 {"id":5,"brand":"Toyota","model":"Prius","color":"Silver","registerNumber":"KKO-0212","year":2018,"price":39000,"marketEstimate":41556,"owner":{"ownerid":2,"firstname":"Mary","lastname":"Robinson"}}]
 ```
 
-*car value estimator service*
+**car value estimator service**
 
 For this service, let's start a new termial. Use the following commands to start car-value-estimator service.
 
@@ -119,37 +89,71 @@ You should see something like the following:
 ```{"estimate":57862,"brand":"Tesla","model":"3","year":2019}```
 
 4. Now we are ready to launch the front end application.  
-
   a. Start a new terminal.
   b. `cd /home/ubuntu/apm/carfront/src`
   c. Edit constants.js file by replacing localhost with your public IP or DNS.
-
+  d. Edit rum.js file by replacing all localhost with your public IP or DNS.
+  e. Now we are ready to start
 ```
+cd ..
 ./install-pkgs.sh
 npm start
 ```
+5. Now go to `http://MY-PUBLIC-IP:3000` you should be able to see our app.  Go ahead, add a new car. Now go to Kibana > APM. Select the last 15 minutes and we should see our services and our front end. We can see traces from the front end to the backend services. 
 
-in the constants.js file, set the server url using your public IP or DNS
+6. One last thing, we will need to ingest the log into Elasticsearch so we can see log events with trace ID.
+  a. Start a new terminal.
+  b. Add the following ingest pipeline using Kibana > Dev Tools
+  ```
+  PUT _ingest/pipeline/geoip-info
+  {
+    "description": "Add geoip info",
+    "processors": [
+      {
+        "geoip": {
+          "field": "client.ip",
+          "target_field": "client.geo",
+          "ignore_missing": true
+        }
+      },
+      {
+        "geoip": {
+          "field": "source.ip",
+          "target_field": "source.geo",
+          "ignore_missing": true
+        }
+      },
+      {
+        "geoip": {
+          "field": "destination.ip",
+          "target_field": "destination.geo",
+          "ignore_missing": true
+        }
+      },
+      {
+        "geoip": {
+          "field": "server.ip",
+          "target_field": "server.geo",
+          "ignore_missing": true
+        }
+      },
+      {
+        "geoip": {
+          "field": "host.ip",
+          "target_field": "host.geo",
+          "ignore_missing": true
+        }
+      }
+    ]
+  }
+  ```
+  b. Run the following commands to start ingest the backend service logs using filebeat.
+  
+  ```
+  sudo chmod go-w /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+  /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml```
 
-enable rum in your apm.yml file
+7. Now go to Kibana > APM > car-value-estimator and click on MarketEstimateController#estimateValue
+8. Click on Actions and select show trace log
 
-
-
-error Failed at the carfront@0.1.0 build script 'react-scripts build'.
-error Make sure you have the latest version of node.js and npm installed.
-
-
-  sudo apt-get update                                                      │························································
-   90  sudo apt-get nodejs                                                      │························································
-   91  sudo apt-get install nodejs                                              │························································
-   92  sudo apt-get install npm                                                 │························································
-  112  apt install -y make python build-essential                               │························································
-  113  sudo apt install -y make python build-essential                          │························································
-  118  sudo apt-get purge --auto-remove nodejs                                  │························································
-  121  sudo apt-get install nodejs                                              │························································
-  147  history | grep apt                                                       │························································
-ubuntu@ip-172-31-26-67:~/apm/carfront/src$                                      │························································
-────────────────────────────────────────────────────────────────────────────────┘························································
-············································
-
-
+<img src="/Labs/images/tracelog.png" width="400">

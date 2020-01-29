@@ -92,8 +92,6 @@ Please follow these directions to create the jobs and we will take a look at the
 
 6. Select on filebeat-*.  Note it is on page 2.
 
-<img src="/Labs/images/filebeat.png" width="800">
-
 7. Select Nginx Access Log
 
 <img src="/Labs/images/nginx.png" width="400">

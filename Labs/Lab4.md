@@ -92,6 +92,9 @@ You should see something like the following:
 - Start a new terminal.
 - `cd /home/ubuntu/apm/carfront/src`
 - Edit constants.js file by replacing localhost with your public IP or DNS.
+```
+export const SERVER_URL = 'http://182.186.115.237:8080/'   
+```
 - Edit rum.js file by replacing all localhost with your public IP or DNS.
 - Now we are ready to start
 

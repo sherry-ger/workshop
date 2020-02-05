@@ -93,9 +93,15 @@ You should see something like the following:
 - `cd /home/ubuntu/apm/carfront/src`
 - Edit constants.js file by replacing localhost with your public IP or DNS.
 ```
-export const SERVER_URL = 'http://182.186.115.237:8080/'   
+export const SERVER_URL = 'http://182.186.115.37:8080/'   
 ```
 - Edit rum.js file by replacing all localhost with your public IP or DNS.
+```
+  // Set custom APM Server URL (default: http://localhost:8200)      
+  serverUrl: 'http://182.186.115.37:8200', 
+  // For distributed tracing to different origin (CORS)  
+  distributedTracingOrigins: ['http://182.186.115.37:8080'],     
+```
 - Now we are ready to start
 
   ```

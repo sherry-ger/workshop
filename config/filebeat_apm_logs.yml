@@ -44,9 +44,6 @@ setup.template.settings:
   #index.codec: best_compression
   #_source.enabled: false
 
-setup.template.enabled: false
-setup.ilm.enabled: false
-
 #============================== Dashboards =====================================
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the

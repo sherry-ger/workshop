@@ -132,7 +132,7 @@ We will be working with the kibana ecommerce sample data.
 
 <img src="/Labs/images/transform_pivot _agg.png" width="400">
 
-10. Specify a TranformID and Destination index. Please ensure to create an index pattern.  Click on Next to continue.
+10. Specify a TranformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
 
 <img src="/Labs/images/transform_details.png" width="400">
 

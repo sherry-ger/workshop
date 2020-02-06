@@ -10,8 +10,15 @@ echo
 echo "Increasing vm.max_map_count..."
 sudo sysctl -w vm.max_map_count=262144
 
-## Remove legacy nodejs ######################################################
+## Remove legacy nodejs #######################################################
 sudo apt-get purge --auto-remove nodejs
+
+## Install jdk and nodejs #####################################################
+sudo apt-get update -y -q
+sudo apt-get install default-jdk -y -q
+sudo apt install -y make python build-essential
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install nodejs -y -q
 
 mkdir /home/ubuntu/elastic
 mkdir /home/ubuntu/workshop/data/logs
@@ -99,6 +106,8 @@ git clone https://github.com/bvader/carfront.git
 cp -f /home/ubuntu/workshop/config/apm-server.yml /home/ubuntu/elastic/apm-server-7.5.2-linux-x86_64/apm-server.yml
 cp -f /home/ubuntu/workshop/config/nginx.yml /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/modules.d/nginx.yml
 cp /home/ubuntu/workshop/config/filebeat_apm_logs.yml /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+sudo chmod go-w /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/modules.d/nginx.yml
+sudo chmod go-w /home/ubuntu/apm/logs/filebeat_apm_logs.yml
 
 __EOF__
 

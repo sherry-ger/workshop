@@ -161,7 +161,7 @@ We will set up filebeat6.
 1. We will like to collect geo information from our RUM. Let's add the following ingest pipeline into elasticsearch.
 - Go to Kibana at http://MY-PUBLIC-IP:5601
 - Go to Dev Tools
- <img src="/Labs/images/dashboards1.png" width="200">
+ <img src="/Labs/images/dev_tools.png" width="200">
  
 - Add the following command
 

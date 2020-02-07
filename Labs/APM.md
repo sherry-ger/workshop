@@ -45,7 +45,7 @@ We will start Kibana here. The Kibana configuration file is located at `elastic/
 1. Start a new terminal
 <img src="/Labs/images/NewTerminal.png" alt="virtual_class" width="500" height="300">
 
-2. Go to the Kibana directory `cd elastic/kibana-7.5.2-linux-x86_64/`
+2. Go to the Kibana directory `cd /home/ubuntu/elastic/kibana-7.5.2-linux-x86_64/`
 3. Start Kibana `bin/kibana`
 
 ### Setup Metricbeat

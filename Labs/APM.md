@@ -12,13 +12,19 @@
 
 ### Setup Environment
 
-When the vm starts, you are automatically placed in your home directory.  You should have a file called `setup.sh`. Please run the file:
+We will setup on the VM and pull down the tools and files that are required for this lab.
+
+1. Click on the My lab button on the left if you have not done so.
+
+<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="500" height="300">
+
+2. When the terminal comes up, you should be at `/home/ubuntu`
+
+3. You should have a file called `setup.sh`. Please run the file:
 
 ```
 ./setup.sh
 ```
-
-When prompted about storage usage, please input Y and hit enter.
 
 ### Setup Elasticsearch
 
@@ -26,13 +32,11 @@ In this exercise, we will set up Elasticsearch.  The Elasticsearch configuration
 
 The configuration file is located in the `config` directory.  It is called conveniently, `elasticsearch.yml`.  Please follow these instructions to start your elasticsearch instance.
 
-1. Click on the My lab button on the left if you have not done so.
+1. From the local directory `/home/ubuntu`, please:
 
-<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="500" height="300">
+```cd elastic/elasticsearch-7.5.2/```
 
-2. When the terminal comes up, you should be at `/home/ubuntu`
-3. `cd elastic/elasticsearch-7.5.2/`
-4. To start Elasticsearch, please run `bin/elasticsearch`
+2. To start Elasticsearch, please run `bin/elasticsearch`
 
 ### Setup Kibana
 

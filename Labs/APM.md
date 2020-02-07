@@ -59,11 +59,11 @@ Let's take a look at what we have done so far.
 
 <img src="/Labs/images/MachineInfo.png" width="400">
 
-2. Copy the Public DNS. We will be re-using the Public DNS later for our services and application as well.
+2. Copy the Public DNS or IP. We will be re-using the Public DNS or IP later for our services and application as well.
 
 <img src="/Labs/images/RemoteIP.png" width="400">
 
-3. Paste the DNS into a browser, add the port number for kibana `:5601` and hit enter.
+3. Paste the DNS into a browser, add the port number for kibana `:5601` and hit enter, e.g. http://MY-PUBLIC-IP:5601
 4. Go to the dashboards.
 
 <img src="/Labs/images/dashboards.png" width="400">
@@ -127,13 +127,14 @@ You should see something like the following:
 Now we are ready to launch the front end application.  
 1. Start a new terminal.
 2. Go to `cd /home/ubuntu/apm/carfront/src`
- a. Edit constants.js file by replacing localhost with your public IP or DNS.
+
+- Edit constants.js file by replacing localhost with your public IP or DNS.
 
 ```
 export const SERVER_URL = 'http://182.186.115.37:8080/'   
 ```
 
- b. Edit rum.js file by replacing all localhost with your public IP or DNS.
+- Edit rum.js file by replacing all localhost with your public IP or DNS.
 
 ```
   // Set custom APM Server URL (default: http://localhost:8200)      
@@ -145,7 +146,7 @@ export const SERVER_URL = 'http://182.186.115.37:8080/'
 3. Now we are ready to start
 
   ```
-  cd ..
+  cd /home/ubuntu/apm/carfront
   ./install-pkgs.sh
   npm start
   ```
@@ -158,10 +159,11 @@ export const SERVER_URL = 'http://182.186.115.37:8080/'
 We will set up filebeat6. 
 
 1. We will like to collect geo information from our RUM. Let's add the following ingest pipeline into elasticsearch.
- a. Go to Kibana at http://MY-PUBLIC-IP:5601
- b. Go to Dev Tools
- c. Add the following command
- 
+- Go to Kibana at http://MY-PUBLIC-IP:5601
+- Go to Dev Tools
+ <img src="/Labs/images/dashboards1.png" width="200">
+- Add the following command
+```
  PUT _ingest/pipeline/geoip-info
  {
    "description": "Add geoip info",
@@ -203,8 +205,11 @@ We will set up filebeat6.
      }
    ]
  }
- d. Click on the green button to execute.
+ ```
+- Click on the green button to execute.
 
+ <img src="/Labs/images/execute-cmd.png" width="400">
+ 
 2. Start a new terminal.
 3. Run the following commands to start ingest the backend service logs using filebeat.
   

@@ -162,7 +162,9 @@ We will set up filebeat6.
 - Go to Kibana at http://MY-PUBLIC-IP:5601
 - Go to Dev Tools
  <img src="/Labs/images/dashboards1.png" width="200">
+ 
 - Add the following command
+
 ```
  PUT _ingest/pipeline/geoip-info
  {
@@ -205,7 +207,8 @@ We will set up filebeat6.
      }
    ]
  }
- ```
+```
+
 - Click on the green button to execute.
 
  <img src="/Labs/images/execute-cmd.png" width="400">

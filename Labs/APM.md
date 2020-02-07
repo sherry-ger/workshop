@@ -1,4 +1,4 @@
-# Capturing and Visualizing Metrics and Logs
+# Capturing and Visualizing APM, Metrics, and Logs
 
 ## Overview
 
@@ -163,7 +163,7 @@ We will set up filebeat6.
 - Go to Dev Tools
  <img src="/Labs/images/dev_tools.png" width="200">
  
-- Add the following command
+- Add the following command in Dev Tools
 
 ```
  PUT _ingest/pipeline/geoip-info

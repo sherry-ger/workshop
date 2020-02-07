@@ -16,7 +16,7 @@ We will setup on the VM and pull down the tools and files that are required for 
 
 1. Click on the My lab button on the left if you have not done so.
 
-<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="500" height="300">
+<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="700" height="400">
 
 2. When the terminal comes up, you should be at `/home/ubuntu`
 
@@ -28,7 +28,7 @@ We will setup on the VM and pull down the tools and files that are required for 
 
 ### Setup Elasticsearch
 
-In this exercise, we will set up Elasticsearch.  The Elasticsearch configuration file is located in `/home/ubuntu/elastic/elasticsearch-7.5.2`.  As you can see we are using the latest Elasticsearch, version 7.5.2
+In this exercise, we will set up Elasticsearch.  The Elasticsearch is located in `/home/ubuntu/elastic/elasticsearch-7.5.2`.  As you can see we are using the latest Elasticsearch, version 7.5.2
 
 The configuration file is located in the `config` directory.  It is called conveniently, `elasticsearch.yml`.  Please follow these instructions to start your elasticsearch instance.
 
@@ -44,6 +44,7 @@ We will start Kibana here. The Kibana configuration file is located at `elastic/
 
 1. Start a new terminal
 <img src="/Labs/images/NewTerminal.png" alt="virtual_class" width="500" height="300">
+
 2. Go to the Kibana directory `cd elastic/kibana-7.5.2-linux-x86_64/`
 3. Start Kibana `bin/kibana`
 
@@ -52,7 +53,7 @@ We will start Kibana here. The Kibana configuration file is located at `elastic/
 We will start Metricbeat.  By default, the system module is enabled. Namely, the ingest pipeline or collection of metrics and dashboard have been configured for us.
 
 1. Start a new terminal
-2. Go to the metricbeat directory, `cd elastic/metricbeat-7.5.2-linux-x86_64/`
+2. Go to the metricbeat directory, `cd /home/ubuntu/elastic/metricbeat-7.5.2-linux-x86_64/`
 3. Start metricbeat, `./metricbeat -e`
 
 ### Validate the data in Kibana.

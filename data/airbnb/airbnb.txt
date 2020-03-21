@@ -1,0 +1,545 @@
+  
+### This command workflow works for ES 7.6 and demonstrates inference on ingest pipeline at the end 
+### using both outlier detection and regression models.  You will need to change out the model IDs with your own.
+######
+# Preview transform merge of 3 indices on a common listing_id field
+#######
+
+POST _transform/_preview
+{
+  "source": {
+    "index": [
+      "airbnb-sfo-reviews",
+      "airbnb-sfo-listings",
+      "airbnb-sfo-calendars"
+    ]
+  },
+  "pivot": {
+    "group_by": {
+      "listing_id": {
+        "terms": {
+          "field": "listing_id"
+        }
+      }
+    },
+    "aggregations": {
+      "max_price": {
+        "max": {
+          "field": "price"
+        }
+      },
+      "min_price": {
+        "min": {
+          "field": "price"
+        }
+      },
+      "avg_price": {
+        "avg": {
+          "field": "price"
+        }
+      },
+      "num_reviews": {
+       "cardinality": {
+          "field": "reviewer_id"
+        }
+      },
+      "num_bedrooms": {
+        "max": {
+          "field": "bedrooms"
+        }
+      },
+      "num_beds": {
+        "max": {
+          "field": "beds"
+        }
+      },
+      "security_deposit": {
+        "max": {
+          "field": "security_deposit"
+        }
+      },
+      "num_bathrooms": {
+        "max": {
+          "field": "bathrooms"
+        }
+      },
+      "accommodates": {
+        "max": {
+          "field": "accommodates"
+        }
+      },
+      "location_geo": {
+        "geo_centroid": {
+          "field": "location_geo"
+        }
+      },
+      "review_score_rating": {
+        "avg": {
+          "field": "review_scores_rating"
+        }
+      },
+      "description": {
+        "scripted_metric": {
+          "init_script": "state.description = null",
+          "map_script": "state.description = params._source.description",
+          "combine_script": "return state.description",
+          "reduce_script": "for (d in states) if (d != null) return d"
+        }
+      }
+    }
+  }
+}
+
+#######
+# Build and start transform
+#######
+
+PUT _transform/listings-sfo-pivot
+{
+  "source": {
+    "index": [
+      "airbnb-sfo-reviews",
+      "airbnb-sfo-listings",
+      "airbnb-sfo-calendars"
+    ]
+  },
+  "dest": {
+    "index": "listings-sfo-pivot"
+  },
+  "pivot": {
+    "group_by": {
+      "listing_id": {
+        "terms": {
+          "field": "listing_id"
+        }
+      }
+    },
+    "aggregations": {
+      "max_price": {
+        "max": {
+          "field": "price"
+        }
+      },
+      "min_price": {
+        "min": {
+          "field": "price"
+        }
+      },
+      "avg_price": {
+        "avg": {
+          "field": "price"
+        }
+      },
+      "num_reviews": {
+        "cardinality": {
+          "field": "reviewer_id"
+        }
+      },
+      "num_bedrooms": {
+        "max": {
+          "field": "bedrooms"
+        }
+      },
+      "num_beds": {
+        "max": {
+          "field": "beds"
+        }
+      },
+      "security_deposit": {
+        "max": {
+          "field": "security_deposit"
+        }
+      },
+      "num_bathrooms": {
+        "max": {
+          "field": "bathrooms"
+        }
+      },
+      "accommodates": {
+        "max": {
+          "field": "accommodates"
+        }
+      },
+      "location_geo": {
+        "geo_centroid": {
+          "field": "location_geo"
+        }
+      },
+      "review_score_rating": {
+        "avg": {
+          "field": "review_scores_rating"
+        }
+      },
+      "description": {
+        "scripted_metric": {
+          "init_script": "state.description = null",
+          "map_script": "state.description = params._source.description",
+          "combine_script": "return state.description",
+          "reduce_script": "for (d in states) if (d != null) return d"
+        }
+      }
+    }
+  }
+}
+
+POST _transform/listings-sfo-pivot/_start
+GET _transform/listings-sfo-pivot/_stats
+
+#### 
+# Build outlier detection to weed out outliers on the pivoted data
+####
+
+PUT _ml/data_frame/analytics/listings-sfo-pivot-outliers
+{
+  "source": {
+    "index": [
+      "listings-sfo-pivot"
+    ],
+    "query": {
+      "range": {
+        "num_reviews": {
+          "gt":2
+        }
+      }
+    }
+  },
+  "dest": {
+    "index": "listings-sfo-pivot-outliers",
+    "results_field": "ml"
+  },
+  "analysis": {
+    "outlier_detection": {}
+  },
+  "analyzed_fields": {
+    "excludes": []
+  }
+}
+
+POST _ml/data_frame/analytics/listings-sfo-pivot-outliers/_start
+GET _ml/data_frame/analytics/listings-sfo-pivot-outliers/_stats
+
+#######
+# Add a new document with my desired AirBnB parameters given our pivoted params
+#######
+
+POST listings-sfo-pivot-outliers/_doc
+{
+  "num_bathrooms" : 2.0,
+  "num_beds" : 4.0,
+  "review_score_rating" : 100.0,
+  "max_price" : 250.0,
+  "min_price" : 120.0,
+  "accommodates" : 4.0,
+  "num_reviews" : 20.0,
+  "num_bedrooms" : 2.0,
+  "ml": {
+    "outlier_score": 0.0
+  }
+}
+
+
+######
+# Build regression job to predict the average price given our pivoted features
+# dependent_variable = predicted field "avg_price"
+######
+PUT _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred
+{
+  "source": {
+    "index": [
+      "listings-sfo-pivot-outliers"
+    ],
+    "query": {
+      "range": {
+        "ml.outlier_score": {
+          "lt": 0.5
+        }
+      }
+    }
+  },
+  "dest": {
+    "index": "listings-sfo-pivot-pred",
+    "results_field": "ml_regression"
+  },
+  "analysis": {
+    "regression": {
+      "dependent_variable": "avg_price"
+    }
+  },
+  "analyzed_fields": {
+    "includes": [
+      "num_bathrooms",
+      "num_beds",
+      "avg_price",
+      "review_score_rating",
+      "max_price",
+      "min_price",
+      "accommodates",
+      "num_reviews",
+      "num_bedrooms"
+    ]
+  }
+}
+
+POST _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred/_start
+GET _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred/_stats
+
+
+GET listings-sfo-pivot-pred/_search
+{
+  "query": {
+    "term": {
+      "ml_regression.is_training": {
+        "value": false
+      }
+    }
+  }
+}
+
+#######
+# How accurate is our regression model?
+#######
+
+POST _ml/data_frame/_evaluate
+{
+  "index": "listings-sfo-pivot-pred",
+  "query": {
+    "term": {
+      "ml_regression.is_training": {
+        "value": true
+      }
+    }
+  },
+  "evaluation": {
+    "regression": { 
+      "actual_field": "avg_price",
+      "predicted_field": "ml_regression.avg_price_prediction",
+      "metrics": {  
+        "r_squared": {},
+        "mean_squared_error": {}                             
+      }
+    }
+  }
+}
+
+#######
+# On average how far are we off?
+#######
+POST /_scripts/painless/_execute
+{
+  "script": {
+    "source": "Math.sqrt(params.number)",
+    "params": {
+      "number": 758.5985960513598
+    }
+  }
+}
+#######
+# Predict outlier score to filter outliers before predicting
+#######
+PUT _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred
+{
+  "source": {
+    "index": [
+      "listings-sfo-pivot-outliers"
+    ],
+    "query": {
+      "bool": {
+        "filter": {
+          "exists": {
+            "field": "ml.outlier_score"
+          }
+        }
+      }
+    }
+  },
+  "dest": {
+    "index": "listings-sfo-pivot-outlier-pred",
+    "results_field": "ml_regression"
+  },
+  "analysis": {
+    "regression": {
+      "dependent_variable": "ml.outlier_score"
+    }
+  },
+  "analyzed_fields": {
+    "includes": [
+      "num_bathrooms",
+      "num_beds",
+      "avg_price",
+      "review_score_rating",
+      "max_price",
+      "min_price",
+      "accommodates",
+      "num_reviews",
+      "num_bedrooms",
+      "ml.outlier_score"
+    ]
+  }
+}
+
+POST _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred/_start
+GET _ml/data_frame/analytics/listings-sfo-pivot-outliers-pred/_stats
+
+# INFERENCE 
+
+#######
+# Look at our models
+#######
+GET _ml/inference/_all
+
+#######
+# Look at our new inference model from outlier score regression
+# Change model_id to match the one found from the inference API 
+#######
+GET _ml/inference/listings-sfo-pivot-outliers-pred-1573139266837?include_model_definition=true
+
+#######
+# Predict the price
+# NOTE: Change the model_id as appropriate
+#######
+POST _ingest/pipeline/_simulate
+{
+  "pipeline": {
+    "processors": [
+      {
+        "inference": {
+          "tag": "inference-sfo-price-1",
+          "model_id": "listings-sfo-pivot-price-pred-1573139118086",
+          "field_mappings": {},
+          "inference_config": {"regression": {}}
+        }
+      }
+    ]
+  },
+  "docs": [
+    {
+      "_source": {
+        "num_bathrooms" : 2.0,
+  "num_beds" : 40.0,
+  "review_score_rating" : 9.0,
+  "max_price" : 170.0,
+  "min_price" : 100.0,
+  "accommodates" : 1.0,
+  "num_reviews" : 0.0,
+  "num_bedrooms" : 2.0
+      }
+    }]
+}
+
+#######
+# Predict the price again, but this time with outliers filtered out
+# NOTE: Change the model_id as appropriate
+#######
+POST _ingest/pipeline/_simulate
+{
+  "pipeline": {
+    "processors": [
+      {
+        "inference": {
+          "tag": "inference-sfo-outlier-1",
+          "model_id": "listings-sfo-pivot-outliers-pred-1573139266837",
+          "field_mappings": {},
+          "inference_config": {"regression": {}},
+          "target_field": "outlier_score"
+        }
+      },
+      {
+        "inference": {
+          "tag": "inference-sfo-price-1",
+          "model_id": "listings-sfo-pivot-price-pred-1573139118086",
+          "field_mappings": {},
+          "inference_config": {"regression": {}},
+          "target_field": "price_pred",
+          "if": "ctx.outlier_score.predicted_value < 0.6"
+        }
+      }
+    ]
+  },
+  "docs": [
+    {
+      "_source": {
+        "num_bathrooms" : 2.0,
+  "num_beds" : 40.0,
+  "review_score_rating" : 9.0,
+  "max_price" : 170.0,
+  "min_price" : 100.0,
+  "accommodates" : 1.0,
+  "num_reviews" : 1.0,
+  "num_bedrooms" : 2.0
+      }
+    }]
+}
+
+#######
+# Deploy our two models, one for predicting if the listing is an outlier and another for predicting its price
+# NOTE: Change the model_id as appropriate
+#######
+PUT _ingest/pipeline/sfo-price-pred
+{
+  "processors": [
+      {
+        "inference": {
+          "tag": "inference-sfo-outlier-1",
+          "model_id": "listings-sfo-pivot-outliers-pred-1573139266837",
+          "field_mappings": {},
+          "inference_config": {"regression": {}},
+          "target_field": "outlier_score"
+        }
+      },
+      {
+        "inference": {
+          "tag": "inference-sfo-price-1",
+          "model_id": "listings-sfo-pivot-price-pred-1573139118086",
+          "field_mappings": {},
+          "inference_config": {"regression": {}},
+          "target_field": "price_pred",
+          "if": "ctx.outlier_score.predicted_value < 0.6"
+        }
+      }
+    ],
+    "description": "Predict price of air bnb housing"
+}
+
+POST test-house-pred/_doc?pipeline=sfo-price-pred
+{
+  "num_bathrooms" : 2.0,
+  "num_beds" : 40.0,
+  "review_score_rating" : 9.0,
+  "max_price" : 170000.0,
+  "min_price" : 1000.0,
+  "accommodates" : 1.0,
+  "num_reviews" : 1.0,
+  "num_bedrooms" : 2.0
+}
+
+POST test-house-pred/_doc?pipeline=sfo-price-pred
+{
+  "num_bathrooms" : 2.0,
+  "num_beds" : 40.0,
+  "review_score_rating" : 9.0,
+  "max_price" : 170.0,
+  "min_price" : 100.0,
+  "accommodates" : 1.0,
+  "num_reviews" : 1.0,
+  "num_bedrooms" : 2.0
+}
+
+POST test-house-pred/_doc?pipeline=sfo-price-pred
+{
+  "num_bathrooms" : 2.0,
+  "num_beds" : 4.0
+}
+
+GET test-house-pred/_search
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

@@ -53,6 +53,6 @@ Let's see how we can access Kibana from the browser.
 
 <img src="/Labs/images/RemoteIP.png" width="400">
 
-3. Paste the DNS into a browser, **add the port number for kibana `:5601`* and hit enter.**
+3. Paste the DNS into a browser, __add the port number for kibana `:5601`* and hit enter__
 
 

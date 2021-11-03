@@ -74,7 +74,7 @@ You should see nginx, elasticsearch, and system in the `enabled` section.
 
 6. I use nano as my editor `nano modules.d/elasticsearch.yml`
 
-7. In the `elasticsearch.yml` file, please set the `var.paths` under the Server logs section
+7. In the `elasticsearch.yml` file, please set the `var.paths` under the Server logs section. It should looks like the following when you are done.
 
 ```
   # Server log:  server:

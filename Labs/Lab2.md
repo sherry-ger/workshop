@@ -455,7 +455,7 @@ GET stocks/_search
 ```
 
 # SQL 
-# We will be using the sample web log data we loaded earlier
+### We will be using the sample web log data we loaded earlier
 
 ```
 GET _sql?format=txt

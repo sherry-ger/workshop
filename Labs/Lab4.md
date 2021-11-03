@@ -8,14 +8,14 @@
 * Deploy services + the front end app
 * Explore APM, traces, Metrics, and Logs
 
-For this lab, we assume you have set up Elasticsearch and Kibana already. If not, please refer to [Lab 3](https://github.com/sherry-ger/workshop/blob/master/Labs/Lab3.md).
+For this lab, we assume you have set up Elasticsearch and Kibana already. If not, please refer to [Lab 1](https://github.com/sherry-ger/workshop/blob/master/Labs/Lab1.md).
 
 ### Setup Metricbeat
 
 We will start Metricbeat.  By default, the system module is enabled. Namely, the ingest pipeline or collection of metrics and dashboard have been configured for us.
 
 1. Start a new terminal
-2. Go to the metricbeat directory, `cd elastic/metricbeat-7.5.2-linux-x86_64/`
+2. Go to the metricbeat directory, `cd elastic/metricbeat-7.15.1-linux-x86_64/`
 3. Start metricbeat, `./metricbeat -e`
 
 ### APMServer
@@ -23,34 +23,12 @@ We will start Metricbeat.  By default, the system module is enabled. Namely, the
 Let's start the APM server.  The APM server is actually just a shipper. It enriches and transforms events that are sent from APM agents and forwards them to Elasticsearch.
 
 1. Start a new terminal
-2. Go to the metricbeat directory, `cd elastic/apm-server-7.5.2-linux-x86_64/`
+2. Go to the metricbeat directory, `cd elastic/apm-server-7.15.1-linux-x86_64/`
 3. Start metricbeat, `./apm-server -e`
 
 ### Deploying Services and App
 
-Before we start, we will need to install Java and nodejs. Ubuntu comes with legacy nodejs; it won't work with our React application.  Please run the following command to install JDK and nodejs.  Please enter Y when prompted.
-
-1. Start a new terminal and run through these commands.
-
-```
-sudo apt-get update
-sudo apt-get install default-jdk
-sudo apt install -y make python build-essential
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install nodejs
-```
-
-2. Before we start the exercise, let's make sure we have the right version of Java and nodejs
-
-```
-java -version
-nodejs -v
-npm -v
-```
-
-You should be running java 1.8.0_242, nodejs v10.18.1, npm 6.13.4.
-
-3. Bring up two backend services written in Java, cardatabase and car-value-estimator. Our front end app is a React application called carfront.
+We will bring up two backend services written in Java, cardatabase and car-value-estimator. Our front end app is a React application called carfront.
 
 **car database service**
 
@@ -164,7 +142,7 @@ export const SERVER_URL = 'http://182.186.115.37:8080/'
   
   ```
   sudo chmod go-w /home/ubuntu/apm/logs/filebeat_apm_logs.yml
-  /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+  /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml
   ```
 
 7. Now go to Kibana > APM > car-value-estimator and click on MarketEstimateController#estimateValue

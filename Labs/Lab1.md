@@ -77,7 +77,8 @@ You should see nginx, elasticsearch, and system in the `enabled` section.
 7. In the `elasticsearch.yml` file, please set the `var.paths` under the Server logs section. It should looks like the following when you are done.
 
 ```
-  # Server log:  server:
+  # Server log:
+  server:
     enabled: true
     # Set custom paths for the log files. If left empty, 
     # Filebeat will choose the paths depending on your OS.

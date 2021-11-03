@@ -132,11 +132,11 @@ Let's take a look at what we have done so far.
 
 <img src="/Labs/images/dashboard2.png" width="400" height="250">
 
-### Infra and Log UI
+### Metrics and Logs
 
 Within Kibana, there are two plugins that are dedicated to Infrastructure and Logs.  
 
-1. Click on the Infrastructure icon to go to the Infra UI.
+1. Click on the Metrics to go to the Metrics UI.
 
 <img src="/Labs/images/InfraUI.png" width="200" >
 
@@ -144,7 +144,7 @@ Within Kibana, there are two plugins that are dedicated to Infrastructure and Lo
 
 <img src="/Labs/images/infraUI1.png" width="500" >
 
-3. Click on View logs to go to the Logs UI or View metrics to go to the Metric UI
+3. Click on Logs to go to the Logs UI or other tabs to focus on different areas.
 
 ### More fun with loading data
 

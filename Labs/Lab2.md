@@ -455,7 +455,7 @@ GET stocks/_search
 ```
 
 # SQL 
-# We will be using the sample web log data we loaded earlier
+### We will be using the sample web log data we loaded earlier
 
 ```
 GET _sql?format=txt
@@ -467,7 +467,7 @@ GET _sql?format=csv
   "query": "SELECT SUM(bytes) as total_bytes, host FROM kibana_sample_data_logs GROUP BY host"
 }
 ```
-# Convert SQL to query DSL
+### Convert SQL to query DSL
 
 ```
 GET _sql/translate

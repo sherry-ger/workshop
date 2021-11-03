@@ -84,7 +84,7 @@ Let's start the APM server.  The APM server is actually just a shipper. It enric
 
 1. Start a new terminal
 2. Go to the metricbeat directory, `cd elastic/apm-server-7.5.2-linux-x86_64/`
-3. Start metricbeat, `./apm-server -e`
+3. Start APM server, `./apm-server -e`
 
 ### Deploying Services and Application
 

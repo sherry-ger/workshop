@@ -2,75 +2,9 @@
 
 ## Overview
 
-* Load nginx logs
 * Create Machine Learning jobs for nginx logs
 * Review the results
 * Outlier detection with Elastic ML
-
-### Setup Environment
-
-When the vm starts, you are automatically placed in your home directory.  You should have a file called `setup.sh`. Please run the file:
-
-```
-./setup.sh
-```
-
-When prompted about storage usage, please input Y and hit enter.
-
-### Setup Elasticsearch
-
-In this exercise, we will set up Elasticsearch.  The Elasticsearch configuration file is located in `/home/ubuntu/elastic/elasticsearch-7.5.2`.  As you can see we are using the latest Elasticsearch, version 7.5.2
-
-The configuration file is located in the `config` directory.  It is called conveniently, `elasticsearch.yml`.  Please follow these instructions to start your elasticsearch instance.
-
-1. Click on the My lab button on the left if you have not done so.
-
-<img src="/Labs/images/virtual_classroom_user_guide_lab-terminal.png" alt="virtual_class" width="500" height="300">
-
-2. When the terminal comes up, you should be at `/home/ubuntu`
-3. `cd elastic/elasticsearch-7.5.2/`
-4. To start Elasticsearch, please run `bin/elasticsearch`
-
-### Setup Kibana
-
-We will start Kibana here. The Kibana configuration file is located at `elastic/kibana-7.5.2-linux-x86_64/config`.  You guessed it.  The configuration file is called `kibana.yml`.  Please follow these steps to run Kibana
-
-1. Start a new terminal
-2. Go to the Kibana directory `cd elastic/kibana-7.5.2-linux-x86_64/`
-3. Start Kibana `bin/kibana`
-
-### Load Nginx logs
-
-Please go ahead and load the nginx logs by running the following command
-
-```
-sudo chmod go-w /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64/modules.d/nginx.yml
-cd /home/ubuntu/elastic/filebeat-7.5.2-linux-x86_64
-./filebeat -e
-```
-
-### Validate the data in Kibana.
-
-Let's take a look at what we have done so far.
-
-1. Go to Setting on the upper right corner and click on Machine Info.
-
-<img src="/Labs/images/MachineInfo.png" width="400">
-
-2. Copy the Public DNS. 
-
-<img src="/Labs/images/RemoteIP.png" width="400">
-
-3. Paste the DNS into a browser, add the port number for kibana `:5601` and hit enter.
-4. Go to the dashboards.
-
-<img src="/Labs/images/dashboards.png" width="400">
-
-5. In the searchbox, type in `filebeat nginx`
-6. Select `[Filebeat Nginx] Overview ECS`
-7. Be sure to change the date to last 1 year and click the Refresh button.
-
-<img src="/Labs/images/dashboard2.png" width="400" height="250">
 
 ### Create machine learning jobs for nginx logs
 

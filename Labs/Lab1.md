@@ -85,7 +85,7 @@ You should see nginx, elasticsearch, and system in the `enabled` section.
      - /home/ubuntu/elastic/elasticsearch-7.15.1/logs/*.log
      - /home/ubuntu/elastic/elasticsearch-7.15.1/logs/*_server.json
 ```
-Please note, you only need to copy and paste the section starting from `var.paths`. Be sure to check the lines are pasted correctly. The yml file is very picky.  Use `keyboard control o` to save the file and `keyboard control x` to exit.  
+Please note, you only need to copy and paste the section starting from `var.paths`. Be sure to check the lines are pasted correctly. The yml file is very picky.  Use `keyboard control o` and Return/Enter to save the file and `keyboard control x` to exit.  
 
 8.  We will do the same for nginx.yml `nano modules.d/nginx.yml`
 ```

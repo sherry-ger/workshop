@@ -17,20 +17,29 @@ Please follow these directions to create the jobs and we will take a look at the
 2. Select on License Management on the left
 3. Click on the Start trial button and confirm by clicking on Start my trial.
 4. Click on the main menu to bring out the fly out.
-<img src="/Labs/images/main.png" width="00">
+<img src="/Labs/images/main.png" width="120">
+
 5. Select on Machine Learning on the left panel
 <img src="/Labs/images/ML.png" width="300">
+
 6. Select Anomaly Detection
+
 7. Click on the Create job button
+
 <img src="/Labs/images/createnewjob.png" width="800">
-8. Type in `filebeat` and select `filebeat-*`.
-9. Select Nginx Access Log
+
+8. Type in `filebeat` and select `filebeat-*`
+
+9. Select Nginx Access Log 
+
 <img src="/Labs/images/nginx.png" width="400">
 
-
 10. Type in `nginx_` for Job ID prefix
+
 11. Click on the Create Jobs button to start the jobs.
+
 12. We are done.  Please terminate filebeat.
+
 
 Let's look at the results together.
 
@@ -39,7 +48,7 @@ Let's look at the results together.
 We will be working with the kibana ecommerce sample data.
 
 1. In Kibana, Click on the main menu to bring out the fly out.
-<img src="/Labs/images/main.png" width="100">
+<img src="/Labs/images/main.png" width="120">
 
 2. Click on Overview.
 3. Click on Add data.

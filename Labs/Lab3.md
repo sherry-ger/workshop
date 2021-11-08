@@ -38,11 +38,12 @@ Let's look at the results together.
 
 We will be working with the kibana ecommerce sample data.
 
-1. In Kibana, click on the kibana icon.
+1. In Kibana, Click on the main menu to bring out the fly out.
+<img src="/Labs/images/main.png" width="100">
 
-<img src="/Labs/images/kibana_logo.png" width="300">
-
-2. Click on Load a data set and a Kibana dashboard under Add sample data
+2. Click on Overview.
+3. Click on Add data.
+4. Select Sample data.
 
 <img src="/Labs/images/addsampledata.png" width="400">
 

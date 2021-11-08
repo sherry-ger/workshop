@@ -21,14 +21,23 @@ Please follow these directions to create the jobs and we will take a look at the
 5. Select on Machine Learning on the left panel
 <img src="/Labs/images/ML.png" width="300">
 6. Select Anomaly Detection
+
 7. Click on the Create job button
+
 <img src="/Labs/images/createnewjob.png" width="800">
+
 8. Type in `filebeat` and select `filebeat-*`
+
 9. Select Nginx Access Log 
+
 <img src="/Labs/images/nginx.png" width="400">
+
 10. Type in `nginx_` for Job ID prefix
+
 11. Click on the Create Jobs button to start the jobs.
+
 12. We are done.  Please terminate filebeat.
+
 
 Let's look at the results together.
 

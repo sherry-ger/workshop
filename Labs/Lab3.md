@@ -87,7 +87,7 @@ We will be working with the kibana ecommerce sample data.
 
 13. Expand the tranform job that we just performed and selec the preview tab.  You can see our data laid out in tabular format.
 
-14. Now, let's go create an outlier job by click on the Machine Learning icon on the left hand side.
+14. Now, let's go create an outlier job by click on the Machine Learning, and select Data Frame Analytics
 
 15. Select Data Frame Analytics on the top bar and click on Create your first data frame analytics job.
 

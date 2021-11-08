@@ -10,7 +10,7 @@
 
 Please follow these directions to create the jobs and we will take a look at them together when completed.
 
-1. Go to the Management tab.
+1. Go to the Stack Management tab.
 
 <img src="/Labs/images/management.png" width="300">
 

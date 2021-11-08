@@ -75,7 +75,7 @@ We will be working with the kibana ecommerce sample data.
 
 9. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
 
-<img src="/Labs/images/<img src="/Labs/images/addsampledata.png" width="400">" width="400">
+<img src="/Labs/images/transform_pivot_agg.png" width="400">" width="400">
 
 10. Specify a TranformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
 

@@ -52,9 +52,12 @@ We will be working with the kibana ecommerce sample data.
 
 2. Click on Overview.
 3. Click on Add data.
-4. Select Sample data.
 
 <img src="/Labs/images/addsampledata.png" width="400">
+
+4. Select Sample data.
+
+
 
 3. Click on Add data in the Sample Web Logs pane
 

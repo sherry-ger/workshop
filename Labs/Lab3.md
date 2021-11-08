@@ -18,8 +18,10 @@ Please follow these directions to create the jobs and we will take a look at the
 3. Click on the Start trial button and confirm by clicking on Start my trial.
 4. Click on the main menu to bring out the fly out.
 <img src="/Labs/images/main.png" width="120">
+
 5. Select on Machine Learning on the left panel
 <img src="/Labs/images/ML.png" width="300">
+
 6. Select Anomaly Detection
 
 7. Click on the Create job button

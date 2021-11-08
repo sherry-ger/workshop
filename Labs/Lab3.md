@@ -89,9 +89,12 @@ We will be working with the kibana ecommerce sample data.
 
 14. Now, let's go create an outlier job by click on the Machine Learning, and select Data Frame Analytics
 
-15. Select Data Frame Analytics on the top bar and click on Create your first data frame analytics job.
+15. Click on Create your first data frame analytics job.
 
-16. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
+16. We will take the defaults here and click on continue here.
+<img src="/Labs/images/transform_outlier_default.png" width="400">
+
+17. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
 
 <img src="/Labs/images/transform_outlier.png" width="400">
 

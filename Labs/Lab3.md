@@ -24,7 +24,7 @@ Please follow these directions to create the jobs and we will take a look at the
 7. Click on the Create job button
 <img src="/Labs/images/createnewjob.png" width="800">
 8. Type in `filebeat` and select `filebeat-*`
-9. Select Nginx Access Log
+9. Select Nginx Access Log 
 <img src="/Labs/images/nginx.png" width="400">
 10. Type in `nginx_` for Job ID prefix
 11. Click on the Create Jobs button to start the jobs.

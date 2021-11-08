@@ -71,9 +71,9 @@ We will be working with the kibana ecommerce sample data.
 
 7. Select kibana_sample_data_ecommerce.  
 
-8. In the transform tab, under Group by, select customer_full_name.keyword
+8. Note, the job we are creating is a Pivot job. Under Group by, select terms(customer_full_name)
 
-9. In aggregations, select order_id.value_count,taxful_total_price.sum, products.quantity.sum and click on Next
+9. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
 
 <img src="/Labs/images/transform_pivot _agg.png" width="400">
 

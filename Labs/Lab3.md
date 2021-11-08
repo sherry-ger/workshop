@@ -91,10 +91,15 @@ We will be working with the kibana ecommerce sample data.
 
 15. Click on Create your first data frame analytics job.
 
-16. We will take the defaults here and click on continue here.
+16. Type in name of the transform destination index.
+
+<img src="/Labs/images/transform_outlier_index.png" width="400">
+
+17. We will take the defaults here and click on continue here.
+
 <img src="/Labs/images/transform_outlier_default.png" width="400">
 
-17. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
+18. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
 
 <img src="/Labs/images/transform_outlier.png" width="400">
 

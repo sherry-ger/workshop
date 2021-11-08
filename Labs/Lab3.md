@@ -63,8 +63,8 @@ We will be working with the kibana ecommerce sample data.
 
 <img src="/Labs/images/ecommerce.png" width="400">
 
-4. Go Machine Learning > Data Frame Analytics
-5. Click on Create Job
+4. Go Stack Management > Transforms
+5. Click on Create your first transform
 6. Under type, select Index pattern
 
 <img src="/Labs/images/transform_index_pattern.png" width="400">

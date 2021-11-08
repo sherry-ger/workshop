@@ -16,7 +16,7 @@ Please follow these directions to create the jobs and we will take a look at the
 
 2. Select on License Management on the left
 3. Click on the Start trial button and confirm by clicking on Start my trial.
-4. Select on Machine Learning on the left panel
+4. Select on Machine Learning Jobs on the left panel
 
 <img src="/Labs/images/ML.png" width="300">
 

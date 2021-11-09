@@ -77,15 +77,15 @@ We will be working with the kibana ecommerce sample data.
 
 <img src="/Labs/images/transform_pivot _agg.png" width="400">
 
-10. Specify a TranformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
+10. Specify a TransformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
 
 <img src="/Labs/images/transform_details.png" width="400">
 
 11. Click on Create and start.  
 
-12. Click on Tranform on the bottom of the page to go back to the transform jobs overview pane.
+12. Click on Transform on the bottom of the page to go back to the transform jobs overview pane.
 
-13. Expand the tranform job that we just performed and selec the preview tab.  You can see our data laid out in tabular format.
+13. Expand the transform job that we just performed and selec the preview tab.  You can see our data laid out in tabular format.
 
 14. Now, let's go create an outlier job by click on the Machine Learning, and select Data Frame Analytics
 

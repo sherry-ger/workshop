@@ -52,27 +52,30 @@ We will be working with the kibana ecommerce sample data.
 
 2. Click on Overview.
 3. Click on Add data.
-4. Select Sample data.
 
 <img src="/Labs/images/addsampledata.png" width="400">
+
+4. Select Sample data.
+
+
 
 3. Click on Add data in the Sample Web Logs pane
 
 <img src="/Labs/images/ecommerce.png" width="400">
 
-4. Go Kibana > Management tab and select transform under the Elasticsearch section.
-5. Click on create your first transform.
+4. Go Stack Management > Transforms
+5. Click on Create your first transform
 6. Under type, select Index pattern
 
 <img src="/Labs/images/transform_index_pattern.png" width="400">
 
 7. Select kibana_sample_data_ecommerce.  
 
-8. In the transform tab, under Group by, select customer_full_name.keyword
+8. Note, the job we are creating is a Pivot job. Under Group by, select terms(customer_full_name)
 
-9. In aggregations, select order_id.value_count,taxful_total_price.sum, products.quantity.sum and click on Next
+9. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
 
-<img src="/Labs/images/transform_pivot _agg.png" width="400">
+<img src="/Labs/images/transform_pivot_agg.png" width="400">
 
 10. Specify a TranformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
 
@@ -84,11 +87,19 @@ We will be working with the kibana ecommerce sample data.
 
 13. Expand the tranform job that we just performed and selec the preview tab.  You can see our data laid out in tabular format.
 
-14. Now, let's go create an outlier job by click on the Machine Learning icon on the left hand side.
+14. Now, let's go create an outlier job by click on the Machine Learning, and select Data Frame Analytics
 
-15. Select Data Frame Analytics on the top bar and click on Create your first data frame analytics job.
+15. Click on Create your first data frame analytics job.
 
-16. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
+16. Type in name of the transform destination index.
+
+<img src="/Labs/images/transform_outlier_index.png" width="400">
+
+17. We will take the defaults here and click on continue here.
+
+<img src="/Labs/images/transform_outlier_default.png" width="400">
+
+18. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
 
 <img src="/Labs/images/transform_outlier.png" width="400">
 

@@ -77,7 +77,7 @@ We will be working with the kibana ecommerce sample data.
 
 <img src="/Labs/images/transform_pivot _agg.png" width="400">
 
-10. Specify a TransformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
+10. Specify a TransformID and Destination index. Please ensure to create an index pattern. (I did not select an index pattern because I already have one.) Click on Next to continue.
 
 <img src="/Labs/images/transform_details.png" width="400">
 
@@ -102,8 +102,10 @@ We will be working with the kibana ecommerce sample data.
 18. Create a outlier Job by providing a name and click on continue.
 <img src="/Labs/images/transform_outlier.png" width="400">
 19. Click on continue in Validation
-20. Click on Create to start the job immediately.
-21. Click on View Results to look the results together.
+
+20. Click on Create to start the job immediately
+
+21. Click on View Results to look at the results together.
 
 <img src="/Labs/images/transform_outlier_result.png" width="400">
 

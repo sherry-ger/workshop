@@ -75,7 +75,7 @@ We will be working with the kibana ecommerce sample data.
 
 9. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
 
-<img src="/Labs/images/transform_pivot_agg.png" width="400">
+<img src="/Labs/images/transform_pivot _agg.png" width="400">
 
 10. Specify a TranformID and Destination index. Please ensure to create an index pattern. (I did not select index pattern because I already have one.) Click on Next to continue.
 
@@ -99,7 +99,7 @@ We will be working with the kibana ecommerce sample data.
 
 <img src="/Labs/images/transform_outlier_default.png" width="400">
 
-18. Create a outlier Job by providing a name, a source index and target index. Click on Create when ready and select Start when prompted.
+18. Create a outlier Job by providing a name and click on continue.
 
 <img src="/Labs/images/transform_outlier.png" width="400">
 

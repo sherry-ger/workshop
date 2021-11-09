@@ -103,10 +103,7 @@ We will be working with the kibana ecommerce sample data.
 <img src="/Labs/images/transform_outlier.png" width="400">
 19. Click on continue in Validation
 20. Click on Create to start the job immediately.
-
-
-
-Let's look the results together.
+21. Click on View Results to look the results together.
 
 <img src="/Labs/images/transform_outlier_result.png" width="400">
 

@@ -107,6 +107,5 @@ We will be working with the kibana ecommerce sample data.
 
 21. Click on View Results to look at the results together.
 
-<img src="/Labs/images/transform_outlier_result.png" width="400">
 
 

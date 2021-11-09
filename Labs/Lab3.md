@@ -100,8 +100,11 @@ We will be working with the kibana ecommerce sample data.
 <img src="/Labs/images/transform_outlier_default.png" width="400">
 
 18. Create a outlier Job by providing a name and click on continue.
-
 <img src="/Labs/images/transform_outlier.png" width="400">
+19. Click on continue in Validation
+20. Click on Create to start the job immediately.
+
+
 
 Let's look the results together.
 

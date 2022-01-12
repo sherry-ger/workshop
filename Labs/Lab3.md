@@ -57,10 +57,6 @@ We will be working with the kibana ecommerce sample data.
 
 4. Select Sample data.
 
-
-
-3. Click on Add data in the Sample Web Logs pane
-
 <img src="/Labs/images/ecommerce.png" width="400">
 
 4. Go Stack Management > Transforms

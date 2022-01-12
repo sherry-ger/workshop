@@ -28,24 +28,24 @@ We will setup on the VM and pull down the tools and files that are required for 
 
 ### Setup Elasticsearch
 
-In this exercise, we will set up Elasticsearch.  The Elasticsearch is located in `/home/ubuntu/elastic/elasticsearch-7.15.1`.  As you can see we are using the latest Elasticsearch, version 7.15.1
+In this exercise, we will set up Elasticsearch.  The Elasticsearch is located in `/home/ubuntu/elastic/elasticsearch-7.16.2`.  As you can see we are using the latest Elasticsearch, version 7.16.2
 
 The configuration file is located in the `config` directory.  It is called conveniently, `elasticsearch.yml`.  Please follow these instructions to start your elasticsearch instance.
 
 1. From the local directory `/home/ubuntu`, please:
 
-```cd elastic/elasticsearch-7.15.1/```
+```cd elastic/elasticsearch-7.16.2/```
 
 2. To start Elasticsearch, please run `bin/elasticsearch`
 
 ### Setup Kibana
 
-We will start Kibana here. The Kibana configuration file is located at `elastic/kibana-7.15.1-linux-x86_64/config`.  You guessed it.  The configuration file is called `kibana.yml`.  Please follow these steps to run Kibana
+We will start Kibana here. The Kibana configuration file is located at `elastic/kibana-7.16.2-linux-x86_64/config`.  You guessed it.  The configuration file is called `kibana.yml`.  Please follow these steps to run Kibana
 
 1. Start a new terminal
 <img src="/Labs/images/NewTerminal.png" alt="virtual_class" width="500" height="300">
 
-2. Go to the Kibana directory `cd elastic/kibana-7.15.1-linux-x86_64/`
+2. Go to the Kibana directory `cd elastic/kibana-7.16.2-linux-x86_64/`
 3. Start Kibana `bin/kibana`
 
 ### Setup Metricbeat
@@ -53,7 +53,7 @@ We will start Kibana here. The Kibana configuration file is located at `elastic/
 We will start Metricbeat.  By default, the system module is enabled. Namely, the ingest pipeline or collection of metrics and dashboard have been configured for us.
 
 1. Start a new terminal
-2. Go to the metricbeat directory, `cd elastic/metricbeat-7.15.1-linux-x86_64/`
+2. Go to the metricbeat directory, `cd elastic/metricbeat-7.16.2-linux-x86_64/`
 3. Start metricbeat, `./metricbeat -e`
 
 ### Validate the data in Kibana.
@@ -83,7 +83,7 @@ Let's take a look at what we have done so far.
 Let's start the APM server.  The APM server is actually just a shipper. It enriches and transforms events that are sent from APM agents and forwards them to Elasticsearch.
 
 1. Start a new terminal
-2. Go to the metricbeat directory, `cd elastic/apm-server-7.15.1-linux-x86_64/`
+2. Go to the metricbeat directory, `cd elastic/apm-server-7.16.2-linux-x86_64/`
 3. Start APM server, `./apm-server -e`
 
 ### Deploying Services and Application
@@ -222,7 +222,7 @@ We will set up filebeat6.
 3. Run the following commands to start ingest the backend service logs using filebeat.
   
   ```
-  /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml
+  /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat -e -c /home/ubuntu/apm/logs/filebeat_apm_logs.yml
   ```
 
 4. Now go to Kibana > APM > car-value-estimator and click on MarketEstimateController#estimateValue

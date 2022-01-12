@@ -32,53 +32,53 @@ echo
 echo "Installing Elasticsearch, Kibana, and Filebeat, Metricbeat, Logstash ..."
 
 echo "Elasticsearch"
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.1-linux-x86_64.tar.gz
-tar -xzf elasticsearch-7.15.1-linux-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.16.2-linux-x86_64.tar.gz
+tar -xzf elasticsearch-7.16.2-linux-x86_64.tar.gz
 
 echo "Kibana"
-wget https://artifacts.elastic.co/downloads/kibana/kibana-7.15.1-linux-x86_64.tar.gz
-tar -xzf kibana-7.15.1-linux-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.16.2-linux-x86_64.tar.gz
+tar -xzf kibana-7.16.2-linux-x86_64.tar.gz
 
 echo "Filebeat"
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.15.1-linux-x86_64.tar.gz
-tar xzvf filebeat-7.15.1-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.16.2-linux-x86_64.tar.gz
+tar xzvf filebeat-7.16.2-linux-x86_64.tar.gz
 
 echo "Metricbeat"
-curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.15.1-linux-x86_64.tar.gz
-tar xzvf metricbeat-7.15.1-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.2-linux-x86_64.tar.gz
+tar xzvf metricbeat-7.16.2-linux-x86_64.tar.gz
 
 echo "Logstash"
-curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-7.15.1-linux-x86_64.tar.gz
-tar xzvf logstash-7.15.1-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-7.16.2-linux-x86_64.tar.gz
+tar xzvf logstash-7.16.2-linux-x86_64.tar.gz
 
 echo "APM Server"
-curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.15.1-linux-x86_64.tar.gz
-tar xzvf apm-server-7.15.1-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-7.16.2-linux-x86_64.tar.gz
+tar xzvf apm-server-7.16.2-linux-x86_64.tar.gz
 
 ##  Configure Elasticsearch and Kibana ########################################
 echo
 echo "Configuring Elasticsearch and Kibana..."
-sed -i "s/^#\?cluster\.name:.*/cluster.name: \"elasticsearch-workshop\"/" /home/ubuntu/elastic/elasticsearch-7.15.1/config/elasticsearch.yml
-sed -i "s/^#\?node\.name:.*/node.name: \"node-1\"/" /home/ubuntu/elastic/elasticsearch-7.15.1/config/elasticsearch.yml
-sed -i "s/^#\?discovery\.seed_hosts:.*/discovery.seed_hosts: \[\"127.0.0.1\"\]/" /home/ubuntu/elastic/elasticsearch-7.15.1/config/elasticsearch.yml
-echo "discovery.type: single-node" >> /home/ubuntu/elastic/elasticsearch-7.15.1/config/elasticsearch.yml
-echo "#xpack.security.enabled: true" >> /home/ubuntu/elastic/elasticsearch-7.15.1/config/elasticsearch.yml
+sed -i "s/^#\?cluster\.name:.*/cluster.name: \"elasticsearch-workshop\"/" /home/ubuntu/elastic/elasticsearch-7.16.2/config/elasticsearch.yml
+sed -i "s/^#\?node\.name:.*/node.name: \"node-1\"/" /home/ubuntu/elastic/elasticsearch-7.16.2/config/elasticsearch.yml
+sed -i "s/^#\?discovery\.seed_hosts:.*/discovery.seed_hosts: \[\"127.0.0.1\"\]/" /home/ubuntu/elastic/elasticsearch-7.16.2/config/elasticsearch.yml
+echo "discovery.type: single-node" >> /home/ubuntu/elastic/elasticsearch-7.16.2/config/elasticsearch.yml
+echo "#xpack.security.enabled: true" >> /home/ubuntu/elastic/elasticsearch-7.16.2/config/elasticsearch.yml
 
 echo "Kibana"
-sed -i "s/^#\?server\.host:.*/server.host: \"0.0.0.0\"/" /home/ubuntu/elastic/kibana-7.15.1-linux-x86_64/config/kibana.yml
-sed -i "s/^#\?elasticsearch\.hosts:.*/elasticsearch.hosts: \[\"http:\/\/127.0.0.1:9200\"\]/" /home/ubuntu/elastic/kibana-7.15.1-linux-x86_64/config/kibana.yml
+sed -i "s/^#\?server\.host:.*/server.host: \"0.0.0.0\"/" /home/ubuntu/elastic/kibana-7.16.2-linux-x86_64/config/kibana.yml
+sed -i "s/^#\?elasticsearch\.hosts:.*/elasticsearch.hosts: \[\"http:\/\/127.0.0.1:9200\"\]/" /home/ubuntu/elastic/kibana-7.16.2-linux-x86_64/config/kibana.yml
 
 ##  Configure Filebeat ########################################################
 echo
 echo "Configuring Filebeat..."
-sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/filebeat.yml
-sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/filebeat.yml
+sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
+sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
 
 ##  Configure Metricbeat ########################################################
 echo
 echo "Configuring Metricbeat..."
-sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/metricbeat-7.15.1-linux-x86_64/metricbeat.yml
-sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/metricbeat-7.15.1-linux-x86_64/metricbeat.yml
+sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
+sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
 
 ##  Download Data ############################################################# 
 echo
@@ -103,10 +103,10 @@ git clone https://github.com/bvader/car-value-estimator.git
 git clone https://github.com/bvader/carfront.git
 
 ## Copy Config
-cp -f /home/ubuntu/workshop/config/apm-server.yml /home/ubuntu/elastic/apm-server-7.15.1-linux-x86_64/apm-server.yml
-cp -f /home/ubuntu/workshop/config/nginx.yml /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/modules.d/nginx.yml
+cp -f /home/ubuntu/workshop/config/apm-server.yml /home/ubuntu/elastic/apm-server-7.16.2-linux-x86_64/apm-server.yml
+cp -f /home/ubuntu/workshop/config/nginx.yml /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/modules.d/nginx.yml
 cp /home/ubuntu/workshop/config/filebeat_apm_logs.yml /home/ubuntu/apm/logs/filebeat_apm_logs.yml
-sudo chmod go-w /home/ubuntu/elastic/filebeat-7.15.1-linux-x86_64/modules.d/nginx.yml
+sudo chmod go-w /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/modules.d/nginx.yml
 sudo chmod go-w /home/ubuntu/apm/logs/filebeat_apm_logs.yml
 
 __EOF__

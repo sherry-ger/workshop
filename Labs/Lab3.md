@@ -47,61 +47,66 @@ Let's look at the results together.
 
 We will be working with the kibana ecommerce sample data.
 
-1. In Kibana, Click on the main menu to bring out the fly out.
+1. In Kibana, click on the main menu to bring out the fly out main menu.
 <img src="/Labs/images/main.png" width="120">
 
-2. Click on Overview.
-3. Click on Add data.
+2. Click on Home.
+3. Select Try sample data.
 
 <img src="/Labs/images/addsampledata.png" width="400">
 
-4. Select Sample data.
+4. Click on Add data in the Sample eCommerce orders
 
 <img src="/Labs/images/ecommerce.png" width="400">
 
-4. Go Stack Management > Transforms
-5. Click on Create your first transform
-6. Under type, select Index pattern
+5. Click on the main menu to bring out the fly out menu and select Stack Management > Transforms
+6. Click on Create your first transform
+7. Under type, select Index pattern
 
 <img src="/Labs/images/transform_index_pattern.png" width="400">
 
-7. Select kibana_sample_data_ecommerce.  
+8. Select kibana_sample_data_ecommerce.  
 
-8. Note, the job we are creating is a Pivot job. Under Group by, select terms(customer_full_name)
+9. We are creating a Pivot job. Under Group by, select terms(customer_full_name)
 
-9. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
+10. In aggregations, type in value_count(order_id) to select. Do the same for sum(products.taxful_price), sum(products.quantity), and click on Next to continue
 
 <img src="/Labs/images/transform_pivot _agg.png" width="400">
 
-10. Specify a TransformID and Destination index. Please ensure to create an index pattern. (I did not select an index pattern because I already have one.) Click on Next to continue.
+11. Specify a TransformID and Destination index. Please ensure to create an index pattern. (I did not select an index pattern because I already have one.) Click on Next to continue.
 
 <img src="/Labs/images/transform_details.png" width="400">
 
-11. Click on Create and start.  
+12. Click on Create and start.  
 
-12. Click on Transform on the bottom of the page to go back to the transform jobs overview pane.
+13. Click on Transform on the bottom of the page to go back to the transform jobs overview pane.
 
-13. Expand the transform job that we just performed and selec the preview tab.  You can see our data laid out in tabular format.
+14. Expand the transform job that we just performed and select the preview tab.  You can see our data laid out in tabular format.
 
-14. Now, let's go create an outlier job by click on the Machine Learning, and select Data Frame Analytics
+15. Now, let's go create an outlier job by click on the main menu to bring out the fly out menu and select Machine Learning. 
 
-15. Click on Create your first data frame analytics job.
+16. Choose Data Frame Analytics
 
-16. Type in name of the transform destination index.
+17. Click on Create job.
+
+18. Select the name of the transform destination index.
 
 <img src="/Labs/images/transform_outlier_index.png" width="400">
 
-17. We will take the defaults here and click on continue here.
+19. We will take the defaults here and click on continue.
 
 <img src="/Labs/images/transform_outlier_default.png" width="400">
 
-18. Create a outlier Job by providing a name and click on continue.
+19. Click on Continue in the Additional Options.
+
+20. Create an outlier Job by providing a name and click on continue.
 <img src="/Labs/images/transform_outlier.png" width="400">
-19. Click on continue in Validation
 
-20. Click on Create to start the job immediately
+21. Click on continue in Validation
 
-21. Click on View Results to look at the results together.
+22. Click on Create to start the job immediately
+
+23. Click on View Results to look at the results.
 
 
 

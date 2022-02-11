@@ -73,14 +73,16 @@ echo
 echo "Configuring Filebeat..."
 sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
 sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
-echo "output.elasticsearch.ssl.verification-mode: none" >> /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
+echo "output.elasticsearch.ssl.verification_mode: none" >> /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
+echo "setup.kibana.ssl.verification_mode: none" >> /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/filebeat.yml
 
 ##  Configure Metricbeat ########################################################
 echo
 echo "Configuring Metricbeat..."
 sed -i "s/^  \?hosts:.*/  hosts: [\"127.0.0.1\"]/" /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
 sed -i "s/^#\?setup.dashboards.enabled:.*/setup.dashboards.enabled: true/" /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
-echo "output.elasticsearch.ssl.verification-mode: none" >> /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
+echo "output.elasticsearch.ssl.verification_mode: none" >> /home/ubuntu/elastic/metricbeat-7.16.2-linux-x86_64/metricbeat.yml
+echo "setup.kibana.ssl.verification_mode: none" >> /home/ubuntu/elastic/filebeat-7.16.2-linux-x86_64/metricbeat.yml
 
 ##  Download Data ############################################################# 
 echo
